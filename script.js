@@ -1594,13 +1594,10 @@ function renderCalendar() {
 
 
     let nextDay = 1;
+    let totalCells = start + days;
 
 
-    while (
-        html.split(
-            'class="calendar-day'
-        ).length - 1 < 42
-    ) {
+    while (totalCells < 42) {
 
         const date =
             makeDate(
@@ -1621,6 +1618,7 @@ function renderCalendar() {
 
 
         nextDay++;
+        totalCells++;
     }
 
 
