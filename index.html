@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b14">
+    <title>IntelliMail — Intelligent Inbox</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-mark">✦</div>
+
+            <div>
+                <div class="brand-name">INTELLIMAIL</div>
+                <div class="brand-sub">Intelligent inbox</div>
+            </div>
+        </div>
+
+        <nav class="side-nav">
+
+            <button class="nav-item active" data-page="dashboard">
+                <span>⌂</span>
+                <b>Dashboard</b>
+            </button>
+
+            <button class="nav-item" data-page="inbox">
+                <span>✉</span>
+                <b>Inbox</b>
+                <em id="inboxNavCount">8</em>
+            </button>
+
+            <button class="nav-item" data-page="actions">
+                <span>⚡</span>
+                <b>Action Queue</b>
+            </button>
+
+            <button class="nav-item" data-page="tasks">
+                <span>✓</span>
+                <b>Tasks</b>
+            </button>
+
+            <button class="nav-item" data-page="calendar">
+                <span>□</span>
+                <b>Calendar</b>
+            </button>
+
+            <button class="nav-item" data-page="important">
+                <span>★</span>
+                <b>Important</b>
+            </button>
+
+            <button class="nav-item" data-page="archive">
+                <span>▤</span>
+                <b>Archive</b>
+            </button>
+
+        </nav>
+
+        <!-- CROSS DEVICE SYNC -->
+        <div class="sync-card">
+
+            <div class="sync-live">
+                <i></i>
+                Phone connected
+            </div>
+
+            <strong>INTELLIMAIL SYNC</strong>
+
+            <small>
+                Last synced: Just now
+            </small>
+
+            <div class="sync-thread">
+                <span>Current thread</span>
+                <b id="syncThread">Client Proposal</b>
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main-area">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <button
+                class="mobile-menu"
+                id="mobileMenu"
+            >
+                ☰
+            </button>
+
+            <div class="search-box">
+
+                <span>⌕</span>
+
+                <input
+                    id="globalSearch"
+                    type="search"
+                    placeholder="Search emails, tasks, threads..."
+                >
+
+                <kbd>Ctrl K</kbd>
+
+            </div>
+
+            <div class="top-actions">
+
+                <div class="sync-pill">
+                    <i></i>
+                    Synced
+                </div>
+
+                <button
+                    class="preview-btn"
+                    id="openPreview"
+                >
+                    ▣ Mobile Preview
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- DASHBOARD -->
+        <section
+            class="page active"
+            id="dashboard"
+        >
+
+            <div class="hero">
+
+                <div>
+
+                    <div class="eyebrow">
+                        INTELLIGENT INBOX
+                    </div>
+
+                    <h1>
+                        Good Morning 👋
+                    </h1>
+
+                    <p>
+                        See what needs your attention.
+                        IntelliMail turns inbox overload
+                        into clear decisions.
+                    </p>
+
+                </div>
+
+                <div class="impact-card">
+
+                    <strong id="organizedCount">8</strong>
+
+                    <span>
+                        messages organized
+                        <small>
+                            into clear actions
+                        </small>
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- HEATMAP -->
+            <div class="section-head">
+
+                <div>
+
+                    <div class="eyebrow">
+                        PRIORITY HEATMAP
+                    </div>
+
+                    <h2>YOUR INBOX</h2>
+
+                </div>
+
+                <span>
+                    Focus on what matters first.
+                </span>
+
+            </div>
+
+
+            <div class="heatmap-grid">
+
+                <button
+                    class="heat-card critical"
+                    data-page="inbox"
+                    data-filter="critical"
+                >
+
+                    <div class="heat-top">
+
+                        <span class="heat-icon">🔴</span>
+
+                        <span>CRITICAL</span>
+
+                    </div>
+
+                    <strong>02</strong>
+
+                    <p>
+                        Needs immediate attention
+                    </p>
+
+                    <div class="heat-bar">
+                        <i></i>
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="heat-card reply"
+                    data-page="inbox"
+                    data-filter="reply"
+                >
+
+                    <div class="heat-top">
+
+                        <span class="heat-icon">🟡</span>
+
+                        <span>REPLY NOW</span>
+
+                    </div>
+
+                    <strong>05</strong>
+
+                    <p>
+                        Responses waiting on you
+                    </p>
+
+                    <div class="heat-bar">
+                        <i></i>
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="heat-card fyi"
+                    data-page="inbox"
+                    data-filter="fyi"
+                >
+
+                    <div class="heat-top">
+
+                        <span class="heat-icon">🟢</span>
+
+                        <span>FYI</span>
+
+                    </div>
+
+                    <strong>08</strong>
+
+                    <p>
+                        Useful information
+                    </p>
+
+                    <div class="heat-bar">
+                        <i></i>
+                    </div>
+
+                </button>
+
+
+                <button
+                    class="heat-card archive"
+                    data-page="archive"
+                >
+
+                    <div class="heat-top">
+
+                        <span class="heat-icon">⚪</span>
+
+                        <span>ARCHIVE</span>
+
+                    </div>
+
+                    <strong>12</strong>
+
+                    <p>
+                        No action required
+                    </p>
+
+                    <div class="heat-bar">
+                        <i></i>
+                    </div>
+
+                </button>
+
+            </div>
+
+
+            <!-- IMPACT -->
+            <div class="impact-strip">
+
+                <div class="impact-icon">
+                    ✦
+                </div>
+
+                <div>
+
+                    <strong>
+                        From inbox overload to clear decisions.
+                    </strong>
+
+                    <p>
+                        IntelliMail identifies importance,
+                        explains context and turns messages
+                        into actions.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOWER DASHBOARD -->
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                ATTENTION
+                            </div>
+
+                            <h3>
+                                Action Queue
+                            </h3>
+
+                        </div>
+
+                        <button
+                            class="link-btn"
+                            data-page="actions"
+                        >
+                            View all →
+                        </button>
+
+                    </div>
+
+                    <div id="dashboardActions"></div>
+
+                </div>
+
+
+                <div class="panel">
+
+                    <div class="panel-title">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                UPCOMING
+                            </div>
+
+                            <h3>
+                                Deadlines
+                            </h3>
+
+                        </div>
+
+                        <button
+                            class="link-btn"
+                            data-page="calendar"
+                        >
+                            Calendar →
+                        </button>
+
+                    </div>
+
+                    <div id="dashboardDeadlines"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- INBOX -->
+        <section
+            class="page"
+            id="inbox"
+        >
+
+            <div class="page-title">
+
+                <div class="eyebrow">
+                    INTELLIGENT INBOX
+                </div>
+
+                <h1>Inbox</h1>
+
+                <p>
+                    Every message is classified,
+                    summarized and connected to an action.
+                </p>
+
+            </div>
+
+
+            <div class="filters">
+
+                <button
+                    class="filter active"
+                    data-filter="all"
+                >
+                    All
+                    <span>8</span>
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="critical"
+                >
+                    🔴 Critical
+                    <span>2</span>
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="reply"
+                >
+                    🟡 Reply Now
+                    <span>4</span>
+                </button>
+
+                <button
+                    class="filter"
+                    data-filter="fyi"
+                >
+                    🟢 FYI
+                    <span>2</span>
+                </button>
+
+            </div>
+
+
+            <div class="inbox-layout">
+
+                <div class="inbox-list panel">
+
+                    <div class="list-head">
+
+                        <span id="emailCount">
+                            8 messages
+                        </span>
+
+                        <select id="sortEmails">
+
+                            <option value="priority">
+                                Priority
+                            </option>
+
+                            <option value="newest">
+                                Newest
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <div id="emailList"></div>
+
+                </div>
+
+
+                <div
+                    class="analysis panel"
+                    id="emailAnalysis"
+                >
+
+                    <div class="empty-state">
+
+                        <div>✦</div>
+
+                        <h3>
+                            Select an email
+                        </h3>
+
+                        <p>
+                            Choose a message to see
+                            its AI summary, importance,
+                            deadline and next action.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTION QUEUE -->
+        <section
+            class="page"
+            id="actions"
+        >
+
+            <div class="page-title">
+
+                <div class="eyebrow">
+                    EXECUTION LAYER
+                </div>
+
+                <h1>Action Queue</h1>
+
+                <p>
+                    Messages become clear next steps
+                    instead of getting lost in the inbox.
+                </p>
+
+            </div>
+
+            <div
+                id="fullActionQueue"
+                class="action-page-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- TASKS -->
+        <section
+            class="page"
+            id="tasks"
+        >
+
+            <div class="page-title">
+
+                <div class="eyebrow">
+                    FOLLOW UP
+                </div>
+
+                <h1>Tasks</h1>
+
+                <p>
+                    AI-generated tasks from important
+                    messages. Complete a task and it
+                    moves to Completed automatically.
+                </p>
+
+            </div>
+
+            <div
+                class="task-board"
+                id="taskBoard"
+            ></div>
+
+        </section>
+
+
+        <!-- CALENDAR -->
+        <section
+            class="page"
+            id="calendar"
+        >
+
+            <div class="page-title">
+
+                <div class="eyebrow">
+                    TIME INTELLIGENCE
+                </div>
+
+                <h1>Calendar</h1>
+
+                <p>
+                    Deadlines detected from messages,
+                    shown with their related tasks.
+                </p>
+
+            </div>
+
+
+            <div class="calendar-layout">
+
+                <div class="calendar panel">
+
+                    <div class="calendar-toolbar">
+
+                        <button id="prevMonth">
+                            ‹
+                        </button>
+
+                        <h2 id="calendarTitle">
+                            September 2026
+                        </h2>
+
+                        <button id="nextMonth">
+                            ›
+                        </button>
+
+                    </div>
+
+
+                    <div class="weekdays">
+
+                        <span>MON</span>
+                        <span>TUE</span>
+                        <span>WED</span>
+                        <span>THU</span>
+                        <span>FRI</span>
+                        <span>SAT</span>
+                        <span>SUN</span>
+
+                    </div>
+
+
+                    <div
+                        class="calendar-grid"
+                        id="calendarGrid"
+                    ></div>
+
+                </div>
+
+
+                <div class="selected-date panel">
+
+                    <div class="selected-date-top">
+
+                        <div>
+
+                            <div class="eyebrow">
+                                SELECTED DATE
+                            </div>
+
+                            <h3 id="selectedDateTitle">
+                                Friday, September 25
+                            </h3>
+
+                        </div>
+
+                        <span>📅</span>
+
+                    </div>
+
+
+                    <div id="selectedDateTasks"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- IMPORTANT -->
+        <section
+            class="page"
+            id="important"
+        >
+
+            <div class="page-title">
+
+                <div class="eyebrow">
+                    HIGH SIGNAL
+                </div>
+
+                <h1>Important</h1>
+
+                <p>
+                    Messages IntelliMail has identified
+                    as strategically important.
+                </p>
+
+            </div>
+
+            <div
+                id="importantList"
+                class="message-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- ARCHIVE -->
+        <section
+            class="page"
+            id="archive"
+        >
+
+            <div class="page-title">
+
+                <div class="eyebrow">
+                    LOW NOISE
+                </div>
+
+                <h1>Archive</h1>
+
+                <p>
+                    Information that can stay out of
+                    your active decision space.
+                </p>
+
+            </div>
+
+            <div
+                id="archiveList"
+                class="message-grid"
+            ></div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MOBILE NAV -->
+
+<nav class="mobile-nav">
+
+    <button
+        class="active"
+        data-page="dashboard"
+    >
+        <span>⌂</span>
+        Home
+    </button>
+
+    <button data-page="inbox">
+        <span>✉</span>
+        Inbox
+    </button>
+
+    <button data-page="actions">
+        <span>⚡</span>
+        Actions
+    </button>
+
+    <button data-page="tasks">
+        <span>✓</span>
+        Tasks
+    </button>
+
+    <button data-page="calendar">
+        <span>□</span>
+        Calendar
+    </button>
+
+</nav>
+
+
+<!-- REPLY MODAL -->
+
+<div
+    class="reply-modal"
+    id="replyModal"
+>
+
+    <div class="modal-backdrop reply-backdrop"></div>
+
+    <div class="reply-dialog">
+
+        <button
+            class="close-btn"
+            id="closeReplyModal"
+        >
+            ×
+        </button>
+
+
+        <div class="reply-heading">
+
+            <div class="reply-ai">
+                ✦
+            </div>
+
+            <div>
+
+                <div class="eyebrow">
+                    SMART COMMUNICATION
+                </div>
+
+                <h2>
+                    Generate Reply
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div class="reply-context">
+
+            <span>
+                Replying to
+            </span>
+
+            <strong id="replyRecipient">
+                Acme Corporation
+            </strong>
+
+        </div>
+
+
+        <label
+            class="field-label"
+            for="replyInstruction"
+        >
+            What should the reply communicate?
+        </label>
+
+
+        <div class="voice-box">
+
+            <textarea
+                id="replyInstruction"
+                placeholder="Tell them what you want the reply to communicate...
+
+Example: I'm interested but need until Tuesday."
+            ></textarea>
+
+
+            <button
+                class="voice-btn"
+                id="voiceButton"
+            >
+
+                <span>🎙️</span>
+
+                <small>
+                    Tap & speak
+                </small>
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="voice-status"
+            id="voiceStatus"
+        >
+            Voice input is ready.
+        </div>
+
+
+        <div class="field-label">
+            Choose tone
+        </div>
+
+
+        <div class="tone-grid">
+
+            <button
+                class="tone active"
+                data-tone="professional"
+            >
+                👔 Professional
+            </button>
+
+            <button
+                class="tone"
+                data-tone="concise"
+            >
+                ⚡ Concise
+            </button>
+
+            <button
+                class="tone"
+                data-tone="polite"
+            >
+                🤝 Polite Refusal
+            </button>
+
+        </div>
+
+
+        <button
+            class="generate-btn"
+            id="generateReplyButton"
+        >
+            ✦ Generate Reply
+        </button>
+
+
+        <div
+            class="generated-area"
+            id="generatedReplyArea"
+        >
+
+            <div class="generated-title">
+
+                <span>
+                    GENERATED REPLY
+                </span>
+
+                <button id="copyReplyButton">
+                    Copy
+                </button>
+
+            </div>
+
+
+            <div
+                class="generated-reply"
+                id="generatedReply"
+            ></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MOBILE PREVIEW -->
+
+<div
+    class="mobile-modal"
+    id="mobileModal"
+>
+
+    <div class="mobile-modal-backdrop"></div>
+
+    <div class="phone-stage">
+
+        <button
+            class="mobile-close"
+            id="closeMobilePreview"
+        >
+            ×
+        </button>
+
+        <div class="phone-frame">
+
+            <iframe
+                id="mobilePreviewFrame"
+                title="IntelliMail Mobile Experience"
+            ></iframe>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- TOAST -->
+
+<div
+    class="toast"
+    id="toast"
+>
+
+    <span>✓</span>
+
+    <span id="toastMessage">
+        Saved
+    </span>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
